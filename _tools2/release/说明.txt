@@ -27,7 +27,8 @@ GOG 版 80 Days（Unity 5，目录里有 “80 Days.exe” 和 “80 Days_Data�
 - sharedassets0/1.assets：中文字体（Noto Sans SC，SIL OFL 1.1 授权）
 - level0 / level1 / level7：菜单、设置、制作名单等界面文字
 - Managed\Assembly-CSharp.dll：程序内写死的英文改为中文、中文排版
-- Managed\CNText.dll（汉化自带）：中文断行、空格与标点整理、中文线索生成
+- Managed\CNText.dll（汉化自带）：中文断行、空格与标点整理、中文线索生成、中文字形预热
+- cn_charset.txt（汉化自带）：译文用到的全部汉字表，供字形预热使用，删掉会导致个别字显示为空白
 
 【第三方组件】
 - files\xdelta3.exe：xdelta 3.1.0，GPL v2 授权，源码 https://github.com/jmacd/xdelta-gpl

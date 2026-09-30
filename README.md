@@ -2,6 +2,13 @@
 
 为 inkle 出品的《80 Days》（**GOG 原版 PC，Unity 5 / Mono**）制作简体中文汉化所用的工具与技术笔记。
 
+## 下载补丁
+
+成品补丁在 **[Releases](https://github.com/ljgit428/80days-cn/releases)** 页面下载。
+
+补丁只包含 xdelta 差异补丁和汉化自带的程序，**不含任何原版游戏文件**——安装时用你本地的
+正版游戏文件现场生成汉化版，装前逐个校验 MD5，版本不符会直接停止。需要 GOG 版《80 Days》。
+
 ## 版权说明
 
 - 《80 Days》的文本、代码与资源版权归 **inkle Ltd.** 所有，本项目与 inkle 无关，请购买正版。
@@ -50,6 +57,9 @@ docs/          技术笔记（ink 格式、字体、排版、踩坑记录）
 
 * **爱发电主页**：[https://afdian.com/a/yukikaze_studio](https://afdian.com/a/yukikaze_studio)
 6. `cnpatch\CNText` 下 `dotnet build -c Release`，复制 `CNText.dll` 到游戏 `Managed\`；再在 `cnpatch\Patcher` 下 `dotnet run -c Release`。
+7. `python _tools2\fix_font_robust.py`：打开 TMP 缺字警告，给全局后备与 `LiberationSans SDF` 挂上中文后备字体（需在第 4 步之后跑）。
+8. `python _tools2\make_charset.py`：导出译文用到的汉字表到游戏根目录 `cn_charset.txt`（`CNText` 的字形预热要读它）。
+9. `python _tools2\build_release.py v1.0.0`：生成可公开发布的 xdelta 补丁包到 `release_build/`。
 
 ## 致谢
 

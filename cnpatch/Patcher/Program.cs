@@ -246,6 +246,19 @@ Console.WriteLine($"类别名包装 {n10} 处");
     Console.WriteLine($"界面/时间包装 {n12} 处");
 }
 
+
+// 13) 启动时预热中文字形 + 防止字体/图集被 UnloadUnusedAssets 回收（CNPrewarm.Install）
+{
+    var prewarm = mod.ImportReference(helper.MainModule.GetType("CNPrewarm").Methods.First(m => m.Name == "Install"));
+    var gcType = mod.GetType("Game.GameController");
+    var awake = gcType.Methods.First(m => m.Name == "Awake");
+    awake.Body.SimplifyMacros();
+    var pw = awake.Body.GetILProcessor();
+    pw.InsertBefore(awake.Body.Instructions[0], pw.Create(OpCodes.Call, prewarm));
+    awake.Body.OptimizeMacros();
+    Console.WriteLine("CNPrewarm 注入 1 处 (Game.GameController::Awake)");
+}
+
 asm.Write(outPath);
 File.Copy(outPath, Path.Combine(managed, "Assembly-CSharp.dll"), true);
 Console.WriteLine("installed " + new FileInfo(Path.Combine(managed, "Assembly-CSharp.dll")).Length);

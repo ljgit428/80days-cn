@@ -46,3 +46,7 @@ desktop.ini
 /translation/
 /docs/汉化记录.md
 /cnpatch/CNText/CNClue.cs
+
+# ---- Unity DLL 的 IL 反汇编产物（第三方代码，不上传）----
+/_tools2/ildump.txt
+/_tools2/api.txt

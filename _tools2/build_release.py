@@ -1,6 +1,7 @@
 # 生成可公开发布的补丁：只含 xdelta 差异补丁 + 自制的 CNText.dll，不含任何原版游戏文件
 # 用法: python build_release.py   （需要 _xd\xdelta3-3.1.0-x86_64.exe；先保证游戏目录里是最新汉化版）
-import os, hashlib, shutil, subprocess, zipfile
+import os, hashlib, shutil, subprocess, zipfile, sys
+VER = sys.argv[1] if len(sys.argv) > 1 else 'v1.0'
 ROOT = r'D:\git\project\80 days CN'; GAME = r'F:\Games\80 Days'; ORIG = os.path.join(ROOT, 'ORIGINAL_BACKUP')
 XD = os.path.join(ROOT, '_xd', 'xdelta3-3.1.0-x86_64.exe')
 SRC = os.path.join(ROOT, '_tools2', 'release')
@@ -10,6 +11,15 @@ md5 = lambda p: hashlib.md5(open(p, 'rb').read()).hexdigest()
 if os.path.exists(OUT): shutil.rmtree(OUT)
 os.makedirs(F)
 rows = []
+EXTRA = ['cn_charset.txt']                         # 游戏根目录下的汉化自制文件（CNPrewarm 要读）
+for _rel in EXTRA:
+    _q = os.path.join(GAME, _rel)
+    if os.path.exists(_q):
+        shutil.copy2(_q, os.path.join(F, os.path.basename(_rel)))
+        rows.append((_rel, '-', md5(_q), os.path.basename(_rel)))
+        print('own', _rel, os.path.getsize(_q))
+    else:
+        raise SystemExit('缺少 ' + _q + '，先跑 _tools2\\make_charset.py')
 for dp, dn, fn in os.walk(os.path.join(GAME, '80 Days_Data')):
     for f in fn:
         p = os.path.join(dp, f); rel = os.path.relpath(p, GAME)
@@ -31,7 +41,7 @@ for n in os.listdir(SRC):
     if n.endswith('.ps1'): open(d, 'w', encoding='utf-8-sig', newline='\r\n').write(open(s, encoding='utf-8').read())
     elif n.endswith('.txt'): open(d, 'w', encoding='utf-8-sig', newline='\r\n').write(open(s, encoding='utf-8').read())
     else: shutil.copy2(s, d)
-z = os.path.join(ROOT, 'release_build', '80Days_CN_Patch_v1.0.zip')
+z = os.path.join(ROOT, 'release_build', '80Days_CN_Patch_%s.zip' % VER)
 with zipfile.ZipFile(z, 'w', zipfile.ZIP_DEFLATED) as zf:
     for dp, dn, fn in os.walk(OUT):
         for f in fn: p = os.path.join(dp, f); zf.write(p, os.path.relpath(p, os.path.dirname(OUT)))
