@@ -49,6 +49,10 @@ docs/          技术笔记（ink 格式、字体、排版、踩坑记录）
 3. 字体：`_tools\make_cn_fonts.py` → `_tools\patch_font.py` → `_tools2\fix_tmp_atlas.py`。
 4. `cd _tools2 && python apply.py`：译文写回 `resources.assets`。
 5. `python _tools2\apply_ui.py`：界面文字。
+6. `cnpatch\CNText` 下 `dotnet build -c Release`，复制 `CNText.dll` 到游戏 `Managed\`；再在 `cnpatch\Patcher` 下 `dotnet run -c Release`。
+7. `python _tools2\fix_font_robust.py`：打开 TMP 缺字警告，给全局后备与 `LiberationSans SDF` 挂上中文后备字体（需在第 4 步之后跑）。
+8. `python _tools2\make_charset.py`：导出译文用到的汉字表到游戏根目录 `cn_charset.txt`（`CNText` 的字形预热要读它）。
+9. `python _tools2\build_release.py v1.0.0`：生成可公开发布的 xdelta 补丁包到 `release_build/`。
 
 ## ❤️ 支持作者
 
@@ -56,10 +60,6 @@ docs/          技术笔记（ink 格式、字体、排版、踩坑记录）
 如果补丁改善了您的游戏体验，欢迎通过爱发电请作者喝杯咖啡 ☕：
 
 * **爱发电主页**：[https://afdian.com/a/yukikaze_studio](https://afdian.com/a/yukikaze_studio)
-6. `cnpatch\CNText` 下 `dotnet build -c Release`，复制 `CNText.dll` 到游戏 `Managed\`；再在 `cnpatch\Patcher` 下 `dotnet run -c Release`。
-7. `python _tools2\fix_font_robust.py`：打开 TMP 缺字警告，给全局后备与 `LiberationSans SDF` 挂上中文后备字体（需在第 4 步之后跑）。
-8. `python _tools2\make_charset.py`：导出译文用到的汉字表到游戏根目录 `cn_charset.txt`（`CNText` 的字形预热要读它）。
-9. `python _tools2\build_release.py v1.0.0`：生成可公开发布的 xdelta 补丁包到 `release_build/`。
 
 ## 致谢
 
