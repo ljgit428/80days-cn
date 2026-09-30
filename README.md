@@ -42,6 +42,13 @@ docs/          技术笔记（ink 格式、字体、排版、踩坑记录）
 3. 字体：`_tools\make_cn_fonts.py` → `_tools\patch_font.py` → `_tools2\fix_tmp_atlas.py`。
 4. `cd _tools2 && python apply.py`：译文写回 `resources.assets`。
 5. `python _tools2\apply_ui.py`：界面文字。
+
+## ❤️ 支持作者
+
+《80 Days》文本量庞大，汉化与校对完全出于个人热爱，本补丁永久免费开源。  
+如果补丁改善了您的游戏体验，欢迎通过爱发电请作者喝杯咖啡 ☕：
+
+* **爱发电主页**：[https://afdian.com/a/yukikaze_studio](https://afdian.com/a/yukikaze_studio)
 6. `cnpatch\CNText` 下 `dotnet build -c Release`，复制 `CNText.dll` 到游戏 `Managed\`；再在 `cnpatch\Patcher` 下 `dotnet run -c Release`。
 
 ## 致谢
