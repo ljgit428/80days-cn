@@ -1,0 +1,48 @@
+# ---- 游戏文件 / 版权内容：只放本地，绝不上传 ----
+/ORIGINAL_BACKUP/
+/extracted/
+/patched/
+/decomp/
+
+# ---- 发布产物（放 GitHub Releases）----
+/汉化补丁包/
+/release_build/
+/_xd/
+/_plain_tmp/
+*.zip
+*.assets
+*.assets.resS
+*.resS
+*.dll
+
+# ---- 含英文原文的明文译文（只在本地；公开的是 translation/hashed/）----
+/translation/*.json
+/translation/*.hide
+
+# ---- 早期中间文件 ----
+/translation/archive/
+/translation/_batch*.txt
+/translation/_data_*.txt
+
+# ---- 构建 / 缓存 / 日志 ----
+bin/
+obj/
+*.log
+__pycache__/
+*.pyc
+.vs/
+.vscode/
+*.user
+Thumbs.db
+desktop.ini
+
+# 旧的整文件补丁脚本会复制原版游戏文件，仅限本地
+/_tools2/pack/
+/_tools2/build_pack.py
+/_tools2/build_groups.py
+
+
+# ---- 译文属于原作的衍生作品，不公开 ----
+/translation/
+/docs/汉化记录.md
+/cnpatch/CNText/CNClue.cs

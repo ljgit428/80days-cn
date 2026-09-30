@@ -1,0 +1,37 @@
+80 Days（八十天环游地球，GOG 原版 PC）简体中文汉化补丁
+=========================================================
+
+【这是什么】
+本补丁只包含“差异补丁”和汉化自带的程序，不包含任何游戏原版文件。
+安装时会用你电脑上的正版游戏文件 + 差异补丁，在本地生成汉化后的文件。
+因此必须先拥有并安装 GOG 版 80 Days。
+
+【适用版本】
+GOG 版 80 Days（Unity 5，目录里有 “80 Days.exe” 和 “80 Days_Data”）。
+安装前会逐个校验文件，版本不符会提示并停止，不会改动任何文件。
+
+【安装】
+1. 关闭游戏。
+2. 双击 “安装汉化.bat”，按提示确认游戏目录（直接回车用默认目录），等待完成。
+3. 启动游戏。原版文件会自动备份到 80 Days_Data\_cn_backup。
+
+【卸载 / 恢复英文】
+双击 “卸载汉化.bat”；或在 GOG Galaxy 里对游戏执行“验证/修复”。
+
+【注意】
+- GOG Galaxy “验证/修复” 或游戏更新后会变回英文，重新运行安装即可。
+- 存档不受影响。
+
+【补丁内容】
+- resources.assets：全部剧情文字与游戏数据（中文）
+- sharedassets0/1.assets：中文字体（Noto Sans SC，SIL OFL 1.1 授权）
+- level0 / level1 / level7：菜单、设置、制作名单等界面文字
+- Managed\Assembly-CSharp.dll：程序内写死的英文改为中文、中文排版
+- Managed\CNText.dll（汉化自带）：中文断行、空格与标点整理、中文线索生成
+
+【第三方组件】
+- files\xdelta3.exe：xdelta 3.1.0，GPL v2 授权，源码 https://github.com/jmacd/xdelta-gpl
+- 字体：Noto Sans SC，SIL Open Font License 1.1
+
+《80 Days》版权归 inkle Ltd. 所有。本补丁为爱好者制作的非官方汉化，与 inkle 无关，请支持正版。
+项目主页（译文与工具）：https://github.com/ljgit428/80days-cn
